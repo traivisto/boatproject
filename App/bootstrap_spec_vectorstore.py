@@ -109,7 +109,7 @@ def ensure_assistant_with_fs(client: OpenAI, assistant_id: Optional[str], vs_id:
         print(f"Updated Assistant: {a.id} (attached Vector Store {vs_id})")
         return a.id
     # Create new assistant
-    a = client.assistants.create(
+    a = client.beta.assistants.create(
         model=model,
         name=name,
         instructions=(
