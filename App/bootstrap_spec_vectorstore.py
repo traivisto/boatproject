@@ -44,6 +44,9 @@ except Exception as e:
     print("OpenAI SDK is required. pip install openai", file=sys.stderr)
     raise
 
+import openai as openai_pkg, sys
+print("OpenAI SDK version at runtime:", getattr(openai_pkg, "__version__", "unknown"), " | Python:", sys.version)
+
 RAW_ACCEPT = "application/vnd.github.raw"
 JSON_ACCEPT = "application/vnd.github+json"
 GH_API_VER = "2022-11-28"
