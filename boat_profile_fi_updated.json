@@ -1,0 +1,143 @@
+{
+  "vessel": {
+    "name": "Nemo",
+    "type": "Nordkapp Noblesse 830 Highline+ (Weekend package)",
+    "model_year": 2023,
+    "manufactured": 2022,
+    "registration_number": "P150740",
+    "hull_id": "NO-NKAN8014L223",
+    "dimensions_cm": {
+      "loa": 830,
+      "beam": 292,
+      "height": 223
+    },
+    "weight_kg": 2100,
+    "capacities": {
+      "fuel_l": 325,
+      "water_l": 48,
+      "septic_l": 48,
+      "diesel_l": 12,
+      "lpg_kg": 2
+    },
+    "max_persons": 10,
+    "ce_category": "C (coastal waters)"
+  },
+  "engine": {
+    "make_model": "Mercury Verado 350 XXL V10",
+    "model_year": 2024,
+    "manufactured": 2023
+  },
+  "ownership_timeline": [
+    {
+      "date": "2024-12-13",
+      "event": "Myynti valmistui; vene rekisteröity ja otettu käyttöön (demo-vene, 50 käyttötuntia)."
+    },
+    {
+      "date": "2025-04-16",
+      "event": "Fyysinen toimitus omistajalle."
+    }
+  ],
+  "equipment": {
+    "navigation_electronics": [
+      "Fusion MS-RA210 DAB stereo",
+      "2 × Garmin 1223 XSV plotters",
+      "Garmin GTM15-IH in-hull transducer",
+      "4 × Garmin Fusion XS 6.5\" 200W loudspeakers",
+      "Mercury VesselView Link (moottoridata Garmin-näytöille)",
+      "Mercury VesselView Mobile Module",
+      "Mercury VesselView 502 display",
+      "(Suunnitteilla lisätä Garmin GT30-TM tai GT36-TM anturi perään)"
+    ],
+    "deck_hardware": [
+      "Satamakuomu",
+      "Peräankkuri (sähköinen vinssi)",
+      "Keulatikkaat",
+      "Kauko-ohjain perä- ja keulapotkureille sekä vinssille",
+      "Perä- ja keulapotkurit",
+      "Myrkkymaalaus"
+    ],
+    "electrical_power": [
+      "2 × FIAMM VR850 AGM 95 Ah palveluakut",
+      "1 × Bosch AGM starttiakku",
+      "Calix maasähköjärjestelmä ja BC1230-laturi"
+    ],
+    "comfort_systems": [
+      "Webasto AT2000 diesel-lämmitin (MultiControl-paneeli hytissä)",
+      "Vitrifrigo C-sarjan jääkaappi (asennettu 08/2025, toimii mutta jäädyttää juomat; kiinnityksessä virheitä – korjaus luvattu talvisäilytyksen aikana 2025)",
+      "Makeavesisäiliö, jossa Osculati NMEA2000-anturi",
+      "Alde Detector 4017 kaasuvuototunnistin",
+      "Cavagna Type 794 kaasusäädin",
+      "Can FL1323 kaasuliesi (1 × 1750W poltin, allas ja kylmä hana)",
+      "Primus 2 kg täytettävä kaasupullo + varapullo"
+    ]
+  },
+  "dealer_installed": [
+    "React 40 autopilottijärjestelmä (Garmin-integraatio)"
+  ],
+  "owner_modifications": {
+    "summer_2025": [
+      "Yhdistetty kaksois-Garmin-plotterit Ethernetillä",
+      "Lisätty aurinkolataus (Victron SmartSolar MPPT 100/20 + EcoFlow 110W paneeli)",
+      "Korvattu moottorin hätäsammutus Fell Marine MOB+ -järjestelmällä",
+      "Laajennettu NMEA2000-selkälinjaa",
+      "Lisätty Garmin GPS 24xd kompassi",
+      "Lisätty Victron Cerbo GX",
+      "Lisätty Teltonika RUT200 4G-reititin",
+      "Luotu aina päällä oleva virtapiiri"
+    ]
+  },
+  "sensors": {
+    "cabin": "RuuviTag",
+    "fridge": "RuuviTag Pro 2-in-1",
+    "outside": "RuuviTag Pro 4-in-1"
+  },
+  "nmea2000_network": {
+    "helm": [
+      "Mercury VesselView Link",
+      "Autopilotti (React 40)",
+      "Garmin Display 1 (1223 XSV)",
+      "Garmin Display 2 (1223 XSV)",
+      "Makeavesisäiliön anturi",
+      "Garmin MS-RA210 stereo",
+      "Tyhjä (aiemmin virta)"
+    ],
+    "stern": [
+      "Victron Cerbo GX",
+      "Virta",
+      "Garmin GPS 24xd",
+      "Osculati mustavesianturi (asennettu ja toimiva)"
+    ]
+  },
+  "pending_work": [
+    "Korjataan jääkaapin asennus talvisäilytyksen aikana 2025 (puuttuvia ja liian tiukkaan kiristettyjä ruuveja)",
+    "Lisätään pääkytkin aina päällä -virtapiirille",
+    "Korvataan vinssin köyden punainen stopperi",
+    "Ulkovalojen painikkeessa kosketushäiriö – toimii ajoittain",
+    "Kuomun takaosan liepeille tehtävä kiinnitysratkaisu (snap-on-napit tms.), jotta ne eivät jää takaluukun väliin ja pauku ajossa",
+    "Hankitaan verkko patjan alle kosteuden ehkäisyyn ja ilman kierron parantamiseen",
+    "Hankitaan muotoon ommeltu lakana kolmionmuotoiseen keulasänkyyn",
+    "Mahdollisesti hankitaan vaalea kolmionmuotoinen päiväpeitto keulasänkyyn",
+    "Lisätään Garmin GT30-TM tai GT36-TM anturi veneen perään, koska runkoanturi ei toimi luotettavasti matalassa vedessä",
+    "Korvataan nykyinen valotolppa pidemmällä ja oikein taitetulla mallilla; nykyinen on liian lyhyt ja vino"
+  ],
+  "completed_repairs_2025": [
+    "Asennettu ja testattu Osculati 27.168.20 NMEA2000 mustavesianturi",
+    "Vaihdettu jääkaappi Vitrifrigo C-sarjaan (toimii, mutta asennusvirheitä – korjaus sovittu talveksi)",
+    "Dieseltankki puhdistettu, täytetty ja kiinnitetty paremmin (lisätty kitkapehmuste ja RST-kulmarautoja, vaihdettu hihna)",
+    "Kaasuliesi saatu toimimaan kunnolla – kaasuasentaja kiristi säätimen ja venttiilin; lisätty varapullo",
+    "Korjattu perän suojakannen painike elektroniikkaluukun kohdalla",
+    "Vaihdettu taka-vasemman kuomuhihnan solki",
+    "Asennettu on/off-kytkin always-on-piiriin; toimii moitteettomasti"
+  ],
+  "other_equipment": [
+    "Mercury Digital Throttle & Shift (DTS)",
+    "Mercury Tilt Helm",
+    "Sleipner DC SE sähköpotkurit",
+    "Sleipner 8940 ohjauspaneeli kaksoisjoystickilla",
+    "Mercury Power Steering Pump - Gen C",
+    "Garmin SmartPump autopilotille",
+    "Lectrotab trimmitasasysteem",
+    "Sleipner RC-23 kauko-ohjain",
+    "Quick BL2R köysivinssi Balder Autostop -sarjalla"
+  ]
+}
