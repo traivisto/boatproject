@@ -76,7 +76,7 @@ def ensure_vector_store(client: OpenAI, vector_store_id: Optional[str], name: st
     if vector_store_id:
         print(f"Reusing Vector Store: {vector_store_id}")
         return vector_store_id
-    vs = client.beta.vector_stores.create(name=name)
+    vs = client.vector_stores.create(name=name)
     print(f"Created Vector Store: {vs.id} (name='{name}')")
     return vs.id
 
@@ -89,7 +89,7 @@ def upload_spec_to_vector_store(client: OpenAI, vector_store_id: str, spec_bytes
     import io
     bio = io.BytesIO(spec_bytes)
     bio.name = filename  # important: gives the stream an extension for type detection
-    batch = client.beta.vector_stores.file_batches.upload_and_poll(
+    batch = client.vector_stores.file_batches.upload_and_poll(
         vector_store_id=vector_store_id,
         files=[bio],
     )
@@ -101,7 +101,7 @@ def upload_spec_to_vector_store(client: OpenAI, vector_store_id: str, spec_bytes
 def ensure_assistant_with_fs(client: OpenAI, assistant_id: Optional[str], vs_id: str, name: str, model: str) -> str:
     if assistant_id:
         # Attach the vector store to an existing assistant by updating tool_resources
-        a = client.beta.assistants.update(
+        a = client.assistants.update(
             assistant_id,
             tools=[{"type": "file_search"}],
             tool_resources={"file_search": {"vector_store_ids": [vs_id]}},
@@ -109,7 +109,7 @@ def ensure_assistant_with_fs(client: OpenAI, assistant_id: Optional[str], vs_id:
         print(f"Updated Assistant: {a.id} (attached Vector Store {vs_id})")
         return a.id
     # Create new assistant
-    a = client.beta.assistants.create(
+    a = client.assistants.create(
         model=model,
         name=name,
         instructions=(
