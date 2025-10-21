@@ -36,6 +36,7 @@ import os
 import sys
 import requests
 from typing import Optional
+import time
 
 # OpenAI SDK v1.x
 try:
@@ -44,7 +45,7 @@ except Exception as e:
     print("OpenAI SDK is required. pip install openai", file=sys.stderr)
     raise
 
-import openai as openai_pkg, sys
+import openai as openai_pkg
 print("OpenAI SDK version at runtime:", getattr(openai_pkg, "__version__", "unknown"), " | Python:", sys.version)
 
 RAW_ACCEPT = "application/vnd.github.raw"
@@ -65,11 +66,30 @@ def fetch_spec_from_github(owner: str, repo: str, path: str, ref: str, token: st
         "User-Agent": "spec-vectorstore-bootstrap",
     }
     params = {"ref": ref} if ref else {}
-    r = requests.get(url, headers=headers, params=params, timeout=30)
-    if r.status_code == 404:
-        raise FileNotFoundError(f"GitHub path not found: {owner}/{repo}:{path}@{ref}")
-    r.raise_for_status()
-    return r.content
+    # Simple retry on transient failures
+    last_exc = None
+    for attempt_index in range(3):
+        try:
+            r = requests.get(url, headers=headers, params=params, timeout=30)
+            if r.status_code == 404:
+                raise FileNotFoundError(f"GitHub path not found: {owner}/{repo}:{path}@{ref}")
+            # Retry on 5xx
+            if 500 <= r.status_code < 600:
+                if attempt_index < 2:
+                    time.sleep(2 ** attempt_index)
+                    continue
+            r.raise_for_status()
+            return r.content
+        except requests.RequestException as exc:
+            last_exc = exc
+            if attempt_index < 2:
+                time.sleep(2 ** attempt_index)
+                continue
+            raise
+    # Should not reach; raise last exception defensively
+    if last_exc:
+        raise last_exc
+    raise RuntimeError("Unknown error while fetching spec from GitHub")
 
 
 def ensure_vector_store(client: OpenAI, vector_store_id: Optional[str], name: str) -> str:
@@ -94,14 +114,18 @@ def upload_spec_to_vector_store(client: OpenAI, vector_store_id: str, spec_bytes
         files=[bio],
     )
     if batch.status != "completed":
-        raise RuntimeError(f"Vector store file batch not completed: status={batch.status}, counts={batch.file_counts}")
+        last_error = getattr(batch, "last_error", None)
+        raise RuntimeError(
+            f"Vector store file batch not completed: status={batch.status}, "
+            f"counts={batch.file_counts}, last_error={last_error!r}"
+        )
     print(f"Uploaded to Vector Store. File counts: {batch.file_counts}")
 
 
 def ensure_assistant_with_fs(client: OpenAI, assistant_id: Optional[str], vs_id: str, name: str, model: str) -> str:
     if assistant_id:
         # Attach the vector store to an existing assistant by updating tool_resources
-        a = client.assistants.update(
+        a = client.beta.assistants.update(
             assistant_id,
             tools=[{"type": "file_search"}],
             tool_resources={"file_search": {"vector_store_ids": [vs_id]}},
